@@ -81,19 +81,14 @@ function App() {
                       {weather?.main?.humidity}%.
                     </span>
                   </p>
-                  <a
-                    className="ml-auto flex items-center justify-center w-20 h-20 rounded-full  hover:bg-green-600 text-white"
-                    href="#"
-                  >
-                    <span className="flex items-center justify-center w-16 h-16 rounded-full border-2">
-                      {/* weather logo */}
-                      <img
-                        className="w-56"
-                        src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
-                        alt="/"
-                      />
-                    </span>
-                  </a>
+                  <span className="flex ml-auto  items-center justify-center w-16 h-16 rounded-full border-2">
+                    {/* weather logo */}
+                    <img
+                      className="w-56"
+                      src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
+                      alt="/"
+                    />
+                  </span>
                 </div>
               </div>
             </div>
