@@ -9,7 +9,7 @@ export const fetchWeatherAction = createAsyncThunk(
     "weather/fetch",
     async (payload, { rejectWithValue, getState, dispatch }) => {
         try {
-            const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${payload}&appid=${process.env.REACT_APP_MY_API_KEY}`)
+            const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${payload}&appid=${process.env.REACT_APP_MY_API_KEY}&units=metric`)
 
             return data
         } catch (error) {
@@ -34,13 +34,13 @@ const weatherSlice = createSlice({
         builder.addCase(fetchWeatherAction.fulfilled, (state, action) => {
             state.loading = false
             state.weather = action?.payload
-            state.error = undefined
+            state.error = null
         })
 
         // Rejected
         builder.addCase(fetchWeatherAction.rejected, (state, action) => {
             state.loading = false
-            state.weather = undefined
+            state.weather = null
             state.error = action?.payload
         })
     },
