@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
 // Action:
-export const fecthWeatherAction = createAsyncThunk(
+export const fetchWeatherAction = createAsyncThunk(
     "weather/fetch",
     async (payload, { rejectWithValue, getState, dispatch }) => {
         try {
@@ -23,22 +23,22 @@ export const fecthWeatherAction = createAsyncThunk(
 // Slice:
 const weatherSlice = createSlice({
     name: "weather",
-    initialState: { data: "loaded" },
+    initialState: {},
     extraReducers: (builder) => {
         // Pending:
-        builder.addCase(fecthWeatherAction.pending, (state, action) => {
+        builder.addCase(fetchWeatherAction.pending, (state, action) => {
             state.loading = true
         })
 
         // Fulfilled:
-        builder.addCase(fecthWeatherAction.fulfilled, (state, action) => {
+        builder.addCase(fetchWeatherAction.fulfilled, (state, action) => {
             state.loading = false
             state.weather = action?.payload
             state.error = undefined
         })
 
         // Rejected
-        builder.addCase(fecthWeatherAction.rejected, (state, action) => {
+        builder.addCase(fetchWeatherAction.rejected, (state, action) => {
             state.loading = false
             state.weather = undefined
             state.error = action?.payload
